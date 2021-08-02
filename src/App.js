@@ -11,6 +11,7 @@ class App extends React.Component {
       <div>
         <h1>This is woohoo created new things </h1>
         <h1>Ahmad raza kahn</h1>
+        <h1>Israr khan kahn</h1>
       </div>
     );
   }
