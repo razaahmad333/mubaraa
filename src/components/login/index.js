@@ -5,7 +5,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 import "./styles/style.css";
-//// login system addded
+//// without login system
 class LoginPage extends Component {
   constructor(props) {
     super(props);
