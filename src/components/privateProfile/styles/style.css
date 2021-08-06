@@ -1,0 +1,162 @@
+.headingo {
+  margin: 10px 5px;
+  font-size: 1.8em;
+}
+
+.containerD {
+  width: 80%;
+  margin: 5px auto;
+}
+
+.btnContains {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.btnContains .privateBtn {
+  margin: 10px auto;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+  padding: 8px 0;
+}
+
+.btnContains .privateBtn:hover {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+@media only screen and (max-width: 770px) {
+  .containerD {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .containerD {
+    width: 95%;
+  }
+}
+
+.dpInPrivate {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.nameInPrivate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  font-size: 2em;
+}
+
+.jesusLovesYou {
+  font-size: 1.3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.btnContains {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.btnContains .privateBtn {
+  margin: 10px auto;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+  padding: 8px 0;
+}
+
+.btnContains .privateBtn:hover {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+@media only screen and (max-width: 770px) {
+  .nameInPrivate {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    font-size: 2em;
+  }
+  .jesusLovesYou {
+    font-size: 1.3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .nameInPrivate {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .jesusLovesYou {
+    font-size: 1.3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+/*# sourceMappingURL=style.css.map */

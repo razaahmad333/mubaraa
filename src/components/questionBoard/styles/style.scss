@@ -1,0 +1,158 @@
+@import "../../../styles/basicsStyles";
+@import "../../../styles/variables";
+.langButtono {
+    display: flex;
+    justify-content: space-around;
+
+    .lbtno {
+        background-color: black;
+        color: white;
+        font-size: 1em;
+        padding: 4px 20px;
+        border-bottom-right-radius: $borderRadius;
+        border-top-left-radius: $borderRadius;
+        cursor: pointer;
+    }
+}
+
+.pairomeBtn {
+    background-color: black;
+    color: white;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    cursor: pointer;
+    // border-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    border-top-left-radius: 5px;
+    &:active{
+        background-color: black ;
+    }
+}
+
+
+.expandBtn {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    padding: 2px 20px;
+    cursor: pointer;
+    width: 80%;
+    border-radius: $borderRadius;
+
+}
+
+.disabledBtn {
+    background-color: rgba(0, 0, 0, 0.246);
+    color: white;
+    cursor: not-allowed;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    // border-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    border-top-left-radius: 5px;
+}
+
+.questionStatement {
+    font-size: 2em;
+}
+
+.optionName {
+    font-size: 1.2em;
+}
+
+.option {
+
+    &:hover {
+        img {
+            border-radius: $borderRadius;
+            border: 2px solid black;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+    }
+}
+
+.decreaseOpacity {
+    opacity: 0.7;
+
+    border-radius: $borderRadius;
+    border: 2px solid black;
+}
+
+.boolOptionSelected {
+    background-color: green;
+    color: white;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: $borderRadius;
+}
+
+.boolOptionNotSelected {
+    background-color: white;
+    color: black;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: $borderRadius;
+}
+
+
+.questionStatement {
+        text-align: center;
+    font-style: italic;
+}
+
+
+
+
+@media only screen and (max-width: 770px) {
+    .questionBoardHeading{
+        font-size: 1.5em;
+    }
+
+    .questionStatement {
+        font: 2em;
+    }
+    .questionNavig{
+    .pairomeBtn {
+        font-size: 1.2em;
+    }
+
+    .disabledBtn {
+        font-size: 1.2em;
+    }
+}
+}
+
+@media only screen and (max-width: 480px) {
+
+    .questionBoardHeading{
+        font-size: 1.8em;
+    }
+
+
+    .questionStatement {
+        font: 0.8em;
+        text-align: center;
+        font-style: italic;
+    }
+    .questionNavig{
+
+    
+    .pairomeBtn {
+        font-size: 1.2em;
+        padding: 1px 8px;
+    }
+
+    .disabledBtn {
+        font-size: 1.2em;
+        padding: 1px 8px;
+    }
+}
+
+}

@@ -1,0 +1,102 @@
+@import "../../../styles/variables";
+@import '../../../styles/basicsStyles';
+.checked{
+    display: block;
+    width: 10px;
+    height: 20px;
+    background-color: black;
+    border: 1px solid black;
+
+    transition: background-color 2s;
+    &:hover{
+        background-color: white; 
+    }}
+
+.unchecked{
+    display: block;
+    width: 10px;
+    height: 20px;
+    border: 1px solid black;
+    transition: background-color 2s;
+    &:hover{
+        background-color: black;
+    }
+
+}
+
+
+.containerDp{
+    .col{
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.submitButton{
+    background: black;
+    color: white;
+    width: 80%;
+    font-size: 20px;
+    border-bottom-right-radius: $borderRadius;
+    margin: 30px auto;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 2s;
+    &:hover{
+      background-color: white;
+      color: black;
+      border-radius: $borderRadius;  
+        border: 1px solid black;
+    }
+}
+
+.dps{
+    border-radius: 50%;
+    &:hover{
+        border: 2px black solid;
+    }
+}
+
+.bordered{
+    border: 2px black solid;
+
+}
+
+.inputLabel{
+    font-size: 1.6em;
+}
+
+#username{
+    font-size: 1.4em;
+}
+#password{
+    font-size: 1.4em;
+}
+
+.pwdnvg{
+    font-size: 1.2em;
+}
+
+
+.containerDp{
+    .dps{
+        width: 90px;
+        height:90px;
+    }
+}
+
+@media only screen  and (max-width:480px){
+    
+    .containerDp{
+        .dps{
+            width: 60px;
+            height:60px;
+        }
+        .col{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

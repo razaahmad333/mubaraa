@@ -1,0 +1,66 @@
+@import '../../../styles/basicsStyles';
+@import '../../../styles/variables';
+$backgroundColor2:rgba(4, 91, 98, 1);
+$backgroundColor1:rgba(2, 57, 62, 1);
+
+
+#welcome{
+    font-size:3em;
+    margin-bottom: 50px;
+    margin-top: 60px;
+}
+#time{
+    font-size: 2em;
+    margin-top: 160px;
+}
+
+
+.getStarted{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    border: 1px solid black;
+    padding: 8px 0px;
+    border-bottom-right-radius:10px ;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    transition: background-color 1s ,  border-radius 1s;
+    transition-timing-function: ease-in-out;
+
+    &:hover{
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 10px;
+        color: black;
+    }
+}
+
+
+@media only screen and (max-width: 770px) {
+ 
+    #welcome{
+        font-size: 1.8em;
+        margin-top: 100px;
+    }
+ 
+#time{
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+   
+}
+
+@media only screen and (max-width: 480px) {
+    #welcome{
+        font-size: 2em;
+        margin-top: 100px;
+    }
+ 
+#time{
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+   
+}

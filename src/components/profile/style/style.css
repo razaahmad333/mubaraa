@@ -1,0 +1,163 @@
+.headingo {
+  margin: 10px 5px;
+  font-size: 1.8em;
+}
+
+.containerD {
+  width: 80%;
+  margin: 5px auto;
+}
+
+.btnContains {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.btnContains .privateBtn {
+  margin: 10px auto;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5em;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+  padding: 8px 0;
+}
+
+.btnContains .privateBtn:hover {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+@media only screen and (max-width: 770px) {
+  .containerD {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .containerD {
+    width: 95%;
+  }
+}
+
+.checked {
+  display: block;
+  width: 10px;
+  height: 20px;
+  background-color: black;
+  border: 1px solid black;
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
+}
+
+.checked:hover {
+  background-color: white;
+}
+
+.unchecked {
+  display: block;
+  width: 10px;
+  height: 20px;
+  border: 1px solid black;
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
+}
+
+.unchecked:hover {
+  background-color: black;
+}
+
+.containerDp .col {
+  margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.submitButton {
+  background: black;
+  color: white;
+  width: 80%;
+  font-size: 20px;
+  border-bottom-right-radius: 10px;
+  margin: 30px auto;
+  padding: 10px 0;
+  cursor: pointer;
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
+}
+
+.submitButton:hover {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.dps {
+  border-radius: 50%;
+}
+
+.dps:hover {
+  border: 2px black solid;
+}
+
+.bordered {
+  border: 2px black solid;
+}
+
+.inputLabel {
+  font-size: 1.6em;
+}
+
+#username {
+  font-size: 1.4em;
+}
+
+#password {
+  font-size: 1.4em;
+}
+
+.pwdnvg {
+  font-size: 1.2em;
+}
+
+.containerDp .dps {
+  width: 90px;
+  height: 90px;
+}
+
+@media only screen and (max-width: 480px) {
+  .containerDp .dps {
+    width: 60px;
+    height: 60px;
+  }
+  .containerDp .col {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+/*# sourceMappingURL=style.css.map */

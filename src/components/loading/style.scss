@@ -1,0 +1,11 @@
+@import '../.././styles/basicsStyles';
+
+.currentlyUploading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p{
+    font-size: 3em;
+    }
+}
