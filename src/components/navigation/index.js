@@ -235,14 +235,7 @@ function Navigation() {
           </a>
         </li>
         <li>
-          <a
-            href={isAuthenticated ? "/" : "/"}
-            className="waves-effect"
-            onClick={(e) => {
-              isAuthenticated && e.preventDefault();
-              loginCreate(isAuthenticated, "");
-            }}
-          >
+          <a href="#signOutMessage" className="waves-effect modal-trigger">
             Sign Out
           </a>
         </li>
@@ -256,6 +249,24 @@ function Navigation() {
           </a>
         </li>
       </ul>
+
+      <div id="signOutMessage" className="modal modalInNav">
+        <div className="modal-content">
+          <p className="headingo">Are You sure to sign out</p>
+          <div className="btnContains">
+            <div
+              className="privateBtn"
+              onClick={(e) => {
+                isAuthenticated && e.preventDefault();
+                loginCreate(isAuthenticated, "");
+              }}
+            >
+              {" "}
+              Yeah, Sure
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="modal1" className="modal modalInNav">
         <div className="modal-content">
           <div className="row modalBtnContainer">
