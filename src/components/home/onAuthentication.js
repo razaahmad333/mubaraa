@@ -33,9 +33,6 @@ class HomeOnAuthentication extends Component {
     this.state = {
       users: [],
       isUploadingToFirebase: true,
-      currentUserName: "Guest",
-      myFavourites: [],
-      me: undefined,
       isMounted: true,
     };
 
@@ -43,6 +40,7 @@ class HomeOnAuthentication extends Component {
   }
 
   calculateRelativeToMe(users, me) {
+    console.log("came here");
     users.forEach((usero) => {
       let commonAnswers = 0;
       let uncommonAnswers = 0;
@@ -69,7 +67,6 @@ class HomeOnAuthentication extends Component {
           (commonAnswers / (commonAnswers + uncommonAnswers)) * 100
         );
       }
-
       this.state.isMounted &&
         firebase
           .firestore()
@@ -80,24 +77,13 @@ class HomeOnAuthentication extends Component {
             console.log("udpated");
           });
     });
-  }
 
-  sortByPercentage(users) {
-    let ptgarr = [];
-    for (let user of users) {
-      ptgarr.push(user.relativeToMe);
-    }
+    users = quickSortIt(users);
 
-    let newPtgarr = ptgarr.sort();
-    console.log(newPtgarr);
-    let newUsers = Array(users.length).fill(undefined);
-    let idx;
-    for (let i = 0; i < users.length; i++) {
-      idx = newPtgarr.indexOf(users[i].relativeToMe);
-      newUsers[idx] = users[i];
-    }
-
-    return newUsers;
+    this.state.isMounted &&
+      this.setState({ users }, () => {
+        this.setState({ isUploadingToFirebase: false });
+      });
   }
 
   componentDidMount() {
@@ -105,28 +91,17 @@ class HomeOnAuthentication extends Component {
       .firestore()
       .collection("users")
       .get()
-      .then((doc) => {
-        let me;
+      .then((docos) => {
         let users = [];
-        doc.docs.map((doco) => {
-          if (
-            firebase.auth().currentUser.uid !== doco.id &&
-            doco.data().creation
-          ) {
+        docos.docs.forEach((doco) => {
+          if (this.props.me.uid !== doco.id && doco.data().creation) {
             users.push(doco.data());
-          } else if (firebase.auth().currentUser.uid === doco.id) {
-            me = doco.data();
-            if (this.state.isMounted) {
-              this.setState({ myFavourites: me.myFavourites });
-              this.setState({ me });
-              this.setState({ isUploadingToFirebase: false });
-              this.setState({ currentUserName: doco.data().username });
-            }
+          }
+          if (this.state.isMounted) {
+            this.setState({ isUploadingToFirebase: false });
           }
         });
-        this.calculateRelativeToMe(users, me);
-        users = quickSortIt(users);
-        this.state.isMounted && this.setState({ users });
+        this.calculateRelativeToMe(users, this.props.me);
       });
   }
 
@@ -142,12 +117,11 @@ class HomeOnAuthentication extends Component {
         ) : (
           <div className="containerD">
             <p className="headingo">
-              {this.state.currentUserName +
-                ",  now you can see people like you !"}
+              {this.props.me.username + ",  now you can see people like you !"}
             </p>
             <div className="userslikeyou">
               {this.state.users.map((user, index) => (
-                <SingleUser key={index} useruid={user.uid} me={this.state.me} />
+                <SingleUser key={index} useruid={user.uid} me={this.props.me} />
               ))}{" "}
             </div>
           </div>

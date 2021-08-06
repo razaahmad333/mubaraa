@@ -11,7 +11,15 @@
     &:hover{
         background-color: white; 
     }}
-
+    .messageLogin{
+        background-color: rgb(253, 40, 40);
+        font-size:1.2em;
+        color: white;
+        border-bottom-right-radius: $borderRadiusDownRight;
+        border-top-left-radius: $borderRadiusTopLeft;
+        padding: 3px 10px;
+    }
+    
 .unchecked{
     display: block;
     width: 10px;

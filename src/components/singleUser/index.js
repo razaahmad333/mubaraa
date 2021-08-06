@@ -27,10 +27,9 @@ class SingleUser extends Component {
       .firestore()
       .collection("users")
       .doc(this.props.useruid)
-      .onSnapshot((doc) => {
-        if (this.state.isMounted) {
-          this.setState({ user: doc.data() });
-        }
+      .get()
+      .then((doc) => {
+        this.state.isMounted && this.setState({ user: doc.data() });
       });
   }
 
@@ -46,7 +45,7 @@ class SingleUser extends Component {
     } else {
       myFavourites.push(uid);
     }
-    this.setState({ myFavourites });
+    this.state.isMounted && this.setState({ myFavourites });
     me &&
       firebase
         .firestore()
@@ -64,7 +63,8 @@ class SingleUser extends Component {
   }
 
   render() {
-    const { user, myFavourites } = this.state;
+    const user = this.state.user;
+    const myFavourites = this.props.me.myFavourites;
     return (
       <div>
         {user && (

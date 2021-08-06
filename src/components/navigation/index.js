@@ -13,17 +13,10 @@ function givePath(locationa) {
   return pathName.join("/") === "" ? "/" : pathName.join("/");
 }
 
-function Navigation() {
+function Navigation(props) {
   const location = useLocation();
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    firebase.auth().currentUser
-  );
-  const [dp, setDp] = useState(false);
-  const [isUploadingToFirebase, setIsUploadingToFirebase] = useState(true);
-  const doThis = (athe, dpo) => {
-    setIsAuthenticated(athe);
-    setDp(dpo);
-  };
+  const [isAuthenticated] = useState(props.isAuthenticated);
+  const [dp] = useState(props.me.imageurl);
 
   const loginCreate = (ifauth, sendTo) => {
     ifauth
@@ -47,35 +40,10 @@ function Navigation() {
     });
 
     var modal = document.querySelectorAll(".modal");
-    var modalInstances = M.Modal.init(modal, {
+    M.Modal.init(modal, {
       onOpenEnd: () => {
-        console.log(sidenavInstances[0].close());
+        sidenavInstances[0].close();
       },
-    });
-
-    firebase.auth().currentUser &&
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(firebase.auth().currentUser.uid)
-        .onSnapshot((doc) => {
-          doThis(true, doc.data().imageurl);
-          setIsUploadingToFirebase(false);
-        });
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(user.uid)
-          .onSnapshot((doc) => {
-            doThis(true, doc.data().imageurl);
-            setIsUploadingToFirebase(false);
-          });
-      } else {
-        setIsAuthenticated(false);
-      }
     });
   });
   return (
@@ -123,24 +91,15 @@ function Navigation() {
             <div className="col l1"></div>
             {isAuthenticated ? (
               <div className="col l4">
-                <img
-                  alt="tasveer"
-                  src={dp || dp1}
-                  width={"50"}
-                  height={"50"}
-                  className="dp"
-                  onClick={() => {
-                    const boolo = !isUploadingToFirebase && dp;
-                    console.log(boolo, dp);
-                    boolo &&
-                      window.location.assign(
-                        window.location.protocol +
-                          "//" +
-                          window.location.host +
-                          "/privateProfile"
-                      );
-                  }}
-                />
+                <Link to="/privateProfile">
+                  <img
+                    alt="tasveer"
+                    src={dp || dp1}
+                    width={"50"}
+                    height={"50"}
+                    className="dp"
+                  />
+                </Link>
               </div>
             ) : (
               <div className="col l8">
@@ -179,7 +138,7 @@ function Navigation() {
             src={dp || dp1}
             width="100px"
             height="100px"
-            className="circle center"
+            className="circle center dpInSidenav"
           />
           {/* </div>
           </div> */}
@@ -225,7 +184,7 @@ function Navigation() {
         </li>
         <li>
           <a href="#modal1" className="waves-effect modal-trigger">
-            Login{" "}
+            {isAuthenticated ? "Login to other account" : "Login"}
           </a>
         </li>
         <li>
@@ -257,7 +216,7 @@ function Navigation() {
               className="privateBtn"
               onClick={(e) => {
                 isAuthenticated && e.preventDefault();
-                loginCreate(isAuthenticated, "");
+                loginCreate(isAuthenticated, "/loginPage");
               }}
             >
               {" "}
@@ -313,28 +272,3 @@ function Navigation() {
 }
 
 export default Navigation;
-{
-  /* 
-{isAuthenticated ? (
-  <div className="col s4">
-    <img
-      alt="tasveer"
-      src={dp || dp1}
-      width={"50"}
-      height={"50"}
-      className="dp"
-      onClick={() => {
-        const boolo = !isUploadingToFirebase && dp;
-        console.log(boolo, dp);
-        boolo &&
-          window.location.assign(
-            window.location.protocol +
-              "//" +
-              window.location.host +
-              "/privateProfile"
-          );
-      }}
-    />
-  </div>
-) : ( */
-}

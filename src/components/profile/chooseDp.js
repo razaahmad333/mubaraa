@@ -24,11 +24,9 @@ function ChooseDp(props) {
   const [isUploadingToFirebase, setIsUploadingToFirebase] = useState(false);
   const dps = [dp0, dp1, dp2, dp3, dp5, dp6, dp7, dp8, dp9, dp10, dp11, dp12];
   const [selectedDpIndex, setSelectedDpIndex] = useState(
-    props.currentDp ? dps.indexOf(props.currentDp) : 0
+    props.me.imageurl ? dps.indexOf(props.me.imageurl) : 0
   );
-  // useEffect(() => {
 
-  // });
   return (
     <>
       {!isUploadingToFirebase ? (
@@ -59,7 +57,7 @@ function ChooseDp(props) {
                   firebase
                     .firestore()
                     .collection("users")
-                    .doc(firebase.auth().currentUser.uid)
+                    .doc(props.me.uid)
                     .update({
                       imageurl: dps[selectedDpIndex],
                       creation: true,

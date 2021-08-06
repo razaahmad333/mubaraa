@@ -67,7 +67,26 @@ class LoginPage extends Component {
     );
     if (idx !== -1) {
       if (this.state.allPasswords[idx] === this.state.pwd) {
-        console.log("loggin ");
+        console.log("loggin ", this.state.allUids[idx]);
+
+        firebase
+          .auth()
+          .signInAnonymously()
+          .then((res) => {
+            firebase
+              .firestore()
+              .collection("usersuid")
+              .doc(res.user.uid)
+              .set({ uid: this.state.allUids[idx] })
+              .then(() => {
+                window.location.assign(
+                  window.location.protocol +
+                    "//" +
+                    window.location.host +
+                    "/privateProfile"
+                );
+              });
+          });
       } else {
         this.setState({ message: "you have entered wrong password" });
       }
@@ -117,6 +136,16 @@ class LoginPage extends Component {
             <div className="btnContains">
               <div className="privateBtn" onClick={this.loginPlease}>
                 Login
+              </div>
+              <div
+                className="privateBtn"
+                onClick={() => {
+                  window.location.assign(
+                    window.location.protocol + "//" + window.location.host
+                  );
+                }}
+              >
+                Back to Home
               </div>
             </div>
           </div>

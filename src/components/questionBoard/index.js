@@ -5,7 +5,7 @@ import QuestionWithOption from "./quesWithOption";
 import QuestionWithoutOption from "./quesWithoutOption";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import person from "../profile/images/person.png";
 import firebase from "../../firebase/firebase";
 import "firebase/auth";
 import "firebase/firestore";
@@ -18,9 +18,11 @@ class QuestionBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAnswers: Array(questionso[0].length + questionso[1].length).fill(-1),
+      userAnswers:
+        this.props.userAnswers ||
+        Array(questionso[0].length + questionso[1].length).fill(-1),
       questions1: questionso[0],
-      canShowShowButton: false,
+      canShowShowButton: this.props.userAnswers ? true : false,
       questions2: questionso[1],
       totalQuestions: questionso[0].length + questionso[1].length,
       currentIndex: 0,
@@ -33,7 +35,7 @@ class QuestionBoard extends Component {
       canClickSubmit: true,
       canClickPrev: true,
       canClickNext: true,
-      isUploadingToFirebase: true,
+      isUploadingToFirebase: false,
       isMounted: true,
     };
     this.optionSelected = this.optionSelected.bind(this);
@@ -44,26 +46,6 @@ class QuestionBoard extends Component {
     this.makeItGreen = this.makeItGreen.bind(this);
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(user.uid)
-          .onSnapshot((doc) => {
-            if (this.state.isMounted) {
-              this.setState({ isUploadingToFirebase: false });
-              this.setState({ canShowShowButton: true });
-              this.setState({ userAnswers: doc.data().userAnswers });
-            }
-          });
-      } else {
-        console.log("no user logged in");
-        this.state.isMounted && this.setState({ isUploadingToFirebase: false });
-      }
-    });
-  }
   componentWillUnmount() {
     this.setState({ isMounted: false });
   }
@@ -121,24 +103,38 @@ class QuestionBoard extends Component {
     let { userAnswers } = this.state;
     this.state.isMounted && this.setState({ isUploadingToFirebase: true });
     if (user) {
-      this.setState({ isUploadingToFirebase: true });
+      this.state.isMounted && this.setState({ isUploadingToFirebase: true });
+
       firebase
         .firestore()
-        .collection("users")
+        .collection("usersuid")
         .doc(user.uid)
-        .update({ userAnswers })
-        .then((d) => {
-          this.state.isMounted && this.setState({ showAnswerClicked: false });
-          window.location.assign(window.location + "/showmyanswers");
-        })
-        .catch((err) => {
-          console.log(err, "cant write database ");
+        .get()
+        .then((docs) => {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(docs.data().uid)
+            .update({ userAnswers })
+            .then((d) => {
+              this.state.isMounted &&
+                this.setState({ showAnswerClicked: false });
+              window.location.assign(window.location + "/showmyanswers");
+            })
+            .catch((err) => {
+              console.log(err, "cant write database ");
+            });
         });
     } else {
       firebase
         .auth()
         .signInAnonymously()
         .then((user) => {
+          firebase
+            .firestore()
+            .collection("usersuid")
+            .doc(user.user.uid)
+            .set({ uid: user.user.uid });
           firebase
             .firestore()
             .collection("users")
@@ -151,6 +147,7 @@ class QuestionBoard extends Component {
               creation: false,
               myFavourites: [],
               relativeToMe: 0,
+              imageurl: person,
             })
             .then((d) => {
               this.state.isMounted &&

@@ -79,6 +79,11 @@
   color: black;
 }
 
+.dpInSidenav {
+  display: block;
+  margin: 10px 20px;
+}
+
 .dp {
   display: block;
   cursor: pointer;

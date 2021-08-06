@@ -69,6 +69,15 @@
   background-color: white;
 }
 
+.messageLogin {
+  background-color: #fd2828;
+  font-size: 1.2em;
+  color: white;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 8px;
+  padding: 3px 10px;
+}
+
 .unchecked {
   display: block;
   width: 10px;
