@@ -16,6 +16,7 @@ class CreateProfile extends Component {
       pwd: "0000",
       isUploadingToFirebase: true,
       isMounted: true,
+      allUsernames: [],
     };
 
     this.submitTheProfile = this.submitTheProfile.bind(this);
@@ -24,6 +25,18 @@ class CreateProfile extends Component {
   componentDidMount() {
     document.querySelector("#username") &&
       document.querySelector("#username").focus();
+
+    firebase
+      .firestore()
+      .collection("users")
+      .get()
+      .then((doc) => {
+        console.log(doc.docs);
+
+        const allUsernames = doc.docs.map((doco) =>
+          doco.data().username.toLowerCase()
+        );
+      });
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
