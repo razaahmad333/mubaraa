@@ -170,7 +170,6 @@ function Navigation() {
           </div>
         </div>
       </div>
-
       <ul id="slide-out" className="sidenav">
         <li>
           {/* <div className="user-view">
