@@ -248,7 +248,7 @@ function Navigation() {
           </a>
         </li>
       </ul>
-
+      {/* added this thing to main move it to added to login please  */}
       <div id="signOutMessage" className="modal modalInNav">
         <div className="modal-content">
           <p className="headingo">Are You sure to sign out</p>
