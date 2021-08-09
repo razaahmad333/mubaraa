@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase/firebase";
 import "firebase/auth";
 import "firebase/firestore";
@@ -6,7 +7,7 @@ import LoadingRender from "../loading/loading";
 
 import "./styles/style.css";
 import SingleUser from "../singleUser";
-
+import M from "materialize-css";
 function quickSortIt(arr) {
   if (arr.length < 2) {
     return arr;
@@ -34,13 +35,13 @@ class HomeOnAuthentication extends Component {
       users: [],
       isUploadingToFirebase: true,
       isMounted: true,
+      msgCount: 0,
     };
 
     this.calculateRelativeToMe = this.calculateRelativeToMe.bind(this);
   }
 
   calculateRelativeToMe(users, me) {
-    console.log("came here");
     users.forEach((usero) => {
       let commonAnswers = 0;
       let uncommonAnswers = 0;
@@ -87,6 +88,37 @@ class HomeOnAuthentication extends Component {
   }
 
   componentDidMount() {
+    var elems = document.querySelectorAll(".fixed-action-btn");
+    M.FloatingActionButton.init(elems, {});
+
+    firebase
+      .firestore()
+      .collection("messages")
+      .doc(this.props.me.uid)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          Object.keys(doc.data()).forEach((dost) => {
+            let uido = doc.data()[dost].pop().uid;
+            firebase
+              .firestore()
+              .collection("messagetexts")
+              .doc(uido)
+              .onSnapshot((docs) => {
+                if (docs.exists) {
+                  console.log(docs.data());
+                  if (!docs.data().isSeen) {
+                    if (this.state.isMounted) {
+                      let msgCount = this.state.msgCount;
+                      msgCount++;
+                      this.setState({ msgCount });
+                    }
+                  }
+                }
+              });
+          });
+        }
+      });
+
     firebase
       .firestore()
       .collection("users")
@@ -115,13 +147,30 @@ class HomeOnAuthentication extends Component {
         {this.state.isUploadingToFirebase ? (
           <LoadingRender />
         ) : (
-          <div className="containerD">
+          <div>
+            <div className="fixed-action-btn">
+              <Link
+                to="/privateProfile/messageBoard"
+                className={
+                  this.state.msgCount === 0
+                    ? "btn-floating btn-large black"
+                    : "btn-floating btn-large  red"
+                }
+              >
+                <i className="large material-icons">chat </i>{" "}
+              </Link>
+            </div>
             <p className="headingo">
               {this.props.me.username + ",  now you can see people like you !"}
             </p>
-            <div className="userslikeyou">
+            <div>
               {this.state.users.map((user, index) => (
-                <SingleUser key={index} useruid={user.uid} me={this.props.me} />
+                <SingleUser
+                  currentlyChattingWith={this.props.currentlyChattingWith}
+                  key={index}
+                  useruid={user.uid}
+                  me={this.props.me}
+                />
               ))}{" "}
             </div>
           </div>

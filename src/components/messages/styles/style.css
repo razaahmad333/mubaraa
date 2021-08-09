@@ -1,0 +1,264 @@
+div {
+  font-family: "Quicksand", sans-serif;
+}
+
+.brand {
+  font-family: 'Lobster Two', cursive;
+}
+
+.headingo {
+  margin: 10px 5px;
+  font-family: 'Lobster Two', cursive;
+  font-size: 1.8em;
+}
+
+.langButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.langButton .lbtn {
+  font-size: 1em;
+  padding: 4px 20px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.langButton .lbtn:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+.containerD {
+  width: 80%;
+  margin: 5px auto;
+}
+
+.btnContains {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.btnContains .privateBtn {
+  margin: 10px auto;
+  font-size: 1.5em;
+  padding: 8px 0;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.btnContains .privateBtn:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+@media only screen and (max-width: 770px) {
+  .containerD {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .containerD {
+    width: 95%;
+  }
+}
+
+.chatroomContainer {
+  border: 1px solid black;
+  height: 85vh;
+  position: relative;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 8px;
+}
+
+.chatroomContainer p {
+  margin: 0;
+}
+
+.chatroomContainer .friendDp {
+  display: block;
+  margin: 5px;
+  width: 45px;
+  height: 45px;
+}
+
+.chatroomContainer .friendName {
+  font-size: 1.7em;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.chatroomContainer .friendCred {
+  position: absolute;
+  top: 0;
+  height: 10%;
+  border-bottom: 1px solid black;
+}
+
+.chatroomContainer .sent {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.chatroomContainer .received {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.chatroomContainer .sentM {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.chatroomContainer .txt {
+  font-size: 1.1em;
+  word-spacing: 2px;
+  letter-spacing: 0.3px;
+  line-height: 1.4em;
+  word-break: break-all;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 4px;
+  background-color: black;
+  color: white;
+}
+
+.chatroomContainer .chatInputSystem {
+  height: 7%;
+  position: absolute;
+  bottom: 0;
+}
+
+.chatroomContainer .chatInput {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 80%;
+  height: 100%;
+  font-size: 1.3em;
+  padding-left: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chatroomContainer .chatInput:focus {
+  outline: none;
+}
+
+.chatroomContainer .sendBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 20%;
+  font-size: 1.3em;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.chatroomContainer .sendBtn:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+.chatroomContainer .chats {
+  overflow-y: auto;
+  position: absolute;
+  top: 10%;
+  height: 83%;
+}
+
+.trasho {
+  height: 10px;
+}
+
+.deleteReply .modalBtn {
+  margin: 10px;
+  margin-top: 20px;
+  font-size: 1.4em;
+  padding: 10px 5px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.deleteReply .modalBtn:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+.deleted {
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.addBtn {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

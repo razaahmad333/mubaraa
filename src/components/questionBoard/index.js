@@ -142,12 +142,15 @@ class QuestionBoard extends Component {
             .set({
               uid: user.user.uid,
               username: "guest",
-              pwd: "1111",
+              pwd: String(Math.floor(Math.random(0.1, 1) * 10000)),
               userAnswers,
               creation: false,
               myFavourites: [],
               relativeToMe: 0,
               imageurl: person,
+              followers: 0,
+              following: 0,
+              chatsWith: [],
             })
             .then((d) => {
               this.state.isMounted &&
@@ -238,9 +241,9 @@ class QuestionBoard extends Component {
               {" "}
               we have some question to know your childhood memory
             </p>
-            <div className="langButtono">
+            <div className="langButton">
               <div
-                className="lbtno btnss"
+                className="lbtn"
                 onClick={() => {
                   this.setState({ langIndex: 0 });
                 }}
@@ -248,7 +251,7 @@ class QuestionBoard extends Component {
                 English
               </div>
               <div
-                className="lbtno btnss"
+                className="lbtn"
                 onClick={() => {
                   this.setState({ langIndex: 1 });
                 }}

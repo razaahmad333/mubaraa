@@ -45,11 +45,11 @@ class ShowMyAnswers extends Component {
               </p>
 
               {userAnswers[idx] !== -1 ? (
-                <h6 className="answer green-text">
+                <p className="answer green-text">
                   {question.options[userAnswers[idx]].name[langIndex]}
-                </h6>
+                </p>
               ) : (
-                <h6 className="answer black-text"> Not Answered</h6>
+                <p className="answer black-text"> Not Answered</p>
               )}
             </div>
           ))}

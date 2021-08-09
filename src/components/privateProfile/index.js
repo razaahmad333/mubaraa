@@ -15,6 +15,7 @@ class PrivateProfile extends Component {
       myFavourites: this.props.me.myFavourites,
       isMounted: true,
       isUploadingToFirebase: true,
+      msgCount: 0,
     };
   }
 
@@ -30,6 +31,33 @@ class PrivateProfile extends Component {
             this.state.isMounted &&
               this.setState({ isUploadingToFirebase: false });
           });
+      });
+
+    firebase
+      .firestore()
+      .collection("messages")
+      .doc(this.props.me.uid)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          Object.keys(doc.data()).forEach((dost) => {
+            let uido = doc.data()[dost].pop().uid;
+            firebase
+              .firestore()
+              .collection("messagetexts")
+              .doc(uido)
+              .onSnapshot((docs) => {
+                if (docs.exists) {
+                  if (!docs.data().isSeen) {
+                    if (this.state.isMounted) {
+                      let msgCount = this.state.msgCount;
+                      msgCount++;
+                      this.setState({ msgCount });
+                    }
+                  }
+                }
+              });
+          });
+        }
       });
   }
 
@@ -56,18 +84,30 @@ class PrivateProfile extends Component {
                   <div className="row">
                     <div className="col s12  nameInPrivate">
                       {" "}
-                      <p>
+                      <div className="headingo">
                         {(this.props.me && this.props.me.username) || "User"}
-                      </p>{" "}
+                      </div>{" "}
                     </div>
                     <div className="col s12 jesusLovesYou">
                       {" "}
-                      <p>81 people are like you</p>{" "}
+                      <p>
+                        {this.props.me.followers + "  people likes you"}
+                      </p>{" "}
                     </div>
                     <div className="col s12 btnContains">
                       <div className="btnContains">
-                        <Link to="/privateProfile/questionBoard/showmyanswers">
-                          <div className="privateBtn">My Responses</div>
+                        <Link to="/privateProfile/messageBoard">
+                          <div className="privateBtn">
+                            Messages{" "}
+                            {this.state.msgCount === 0 ? (
+                              ""
+                            ) : (
+                              <span className="new red badge">
+                                {" "}
+                                {this.state.msgCount}
+                              </span>
+                            )}{" "}
+                          </div>
                         </Link>{" "}
                       </div>
                     </div>
@@ -80,15 +120,19 @@ class PrivateProfile extends Component {
                   ? "you have added no one"
                   : ""}
               </div>
-              <div className="row">
-                {this.props.me &&
-                  this.state.myFavourites.map((uid, index) => (
-                    <div className="col s12 singles" key={index}>
-                      <SingleUser me={this.props.me} useruid={uid} />
-                    </div>
-                  ))}
-              </div>
+              {this.props.me &&
+                this.state.myFavourites.map((uid, index) => (
+                  <SingleUser
+                    currentlyChattingWith={this.props.currentlyChattingWith}
+                    key={uid}
+                    me={this.props.me}
+                    useruid={uid}
+                  />
+                ))}
               <div className="btnContains">
+                <Link to="/privateProfile/questionBoard/showmyanswers">
+                  <div className="privateBtn">My Responses</div>
+                </Link>{" "}
                 <Link to={`/privateProfile/questionBoard`}>
                   <div className="privateBtn">Edit Your Choices</div>
                 </Link>

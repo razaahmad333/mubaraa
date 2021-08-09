@@ -1,0 +1,128 @@
+@import '../../../styles/basicsStyles';
+@import '../../../styles/variables';
+
+.chatroomContainer{
+    border:1px solid black;
+    height: 85vh;
+    position: relative;
+    border-bottom-right-radius: $borderRadiusDownRight;
+    border-top-left-radius: $borderRadiusTopLeft;
+    p{
+        margin: 0;
+    }
+    .friendDp{
+        display: block;
+        margin: 5px;
+        width: 45px;
+        height: 45px;
+    }
+    .friendName{
+        font-size:1.7em;
+        margin-top:10px;
+        margin-left: 10px; 
+    }
+
+    .friendCred{
+        position: absolute;
+        top: 0;
+        height: 10%;
+        border-bottom:1px solid black;
+    }
+    .sent{
+        border-bottom-left-radius: $borderRadiusDownRight;
+        border-top-left-radius: $borderRadiusTopLeft;
+        border-bottom-right-radius: $borderRadiusTopLeft;
+    }
+    .received{
+        border-bottom-right-radius: $borderRadiusDownRight;
+        border-top-right-radius: $borderRadiusTopLeft;
+        border-bottom-left-radius: $borderRadiusTopLeft;
+    }
+
+    .sentM{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+          
+            .txt{
+                font-size: 1.1em;
+                word-spacing: 2px;
+                letter-spacing: 0.3px;
+                line-height: 1.4em;
+                word-break: break-all;
+                max-width: fit-content;
+                    padding:4px;
+                background-color: black;
+                color: white;
+    
+            }
+            .chatInputSystem{
+                height: 7%;
+            
+                position:absolute;
+                bottom: 0;
+            }
+            .chatInput{
+                position: absolute;
+                left: 0;
+                display: block;
+                width: 80%;
+                height: 100%;
+                font-size: 1.3em;
+                
+                padding-left: 8px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;  
+                &:focus{
+                    outline:none;
+                }
+            }
+
+            .sendBtn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                position: absolute;
+                right: 0;
+                width: 20%;
+                font-size: 1.3em;
+                border: 1px solid black;
+                @include mubaraahBtn();
+            }
+
+            .chats{
+                overflow-y: auto;
+                position: absolute;
+                top: 10%;
+                height: 83%;
+            }
+            
+}
+
+.trasho{
+    height: 10px;
+}
+
+.deleteReply{
+    .modalBtn{
+        margin: 10px;
+        margin-top: 20px;
+        font-size: 1.4em;
+        padding: 10px 5px;
+
+        @include mubaraahBtn()
+    }
+}
+
+.deleted{
+    // background-color: rgb(92, 83, 83);
+    font-size: 0.8em;
+    font-style: italic;
+    
+}
+.addBtn{
+    cursor: pointer;
+}

@@ -36,7 +36,7 @@ class QuestionWithOption extends Component {
                     />
                   </div>{" "}
                   <div className="col s12">
-                    <span className="optionName">{option.name[langIndex]}</span>
+                    <p className="optionName">{option.name[langIndex]}</p>
                   </div>{" "}
                 </div>
               </div>

@@ -1,46 +1,22 @@
 @import "../../../styles/basicsStyles";
 @import "../../../styles/variables";
-.langButtono {
-    display: flex;
-    justify-content: space-around;
 
-    .lbtno {
-        background-color: black;
-        color: white;
-        font-size: 1em;
-        padding: 4px 20px;
-        border-bottom-right-radius: $borderRadius;
-        border-top-left-radius: $borderRadius;
-        cursor: pointer;
-    }
-}
 
 .pairomeBtn {
-    background-color: black;
-    color: white;
+    @include mubaraahBtn();
     font-size: 1.3em;
     padding: 10px 20px;
-    cursor: pointer;
-    // border-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
-    border-top-left-radius: 5px;
-    &:active{
-        background-color: black ;
-    }
+    
 }
 
 
 .expandBtn {
     margin: 0 auto;
     margin-bottom: 10px;
-    background-color: black;
-    color: white;
     font-size: 1em;
     padding: 2px 20px;
-    cursor: pointer;
     width: 80%;
-    border-radius: $borderRadius;
-
+    @include mubaraahBtn();
 }
 
 .disabledBtn {
@@ -50,11 +26,12 @@
     font-size: 1.3em;
     padding: 10px 20px;
     // border-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
-    border-top-left-radius: 5px;
+    border-bottom-right-radius: $borderRadiusDownRight;
+    border-top-left-radius: $borderRadiusTopLeft;
 }
 
 .questionStatement {
+    text-align: center;
     font-size: 2em;
 }
 
@@ -89,6 +66,8 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: $borderRadius;
+    // @include mubaraahBtn();
+       
 }
 
 .boolOptionNotSelected {
@@ -101,11 +80,6 @@
     border-radius: $borderRadius;
 }
 
-
-.questionStatement {
-        text-align: center;
-    font-style: italic;
-}
 
 
 
@@ -139,7 +113,6 @@
     .questionStatement {
         font: 0.8em;
         text-align: center;
-        font-style: italic;
     }
     .questionNavig{
 

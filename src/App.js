@@ -11,20 +11,26 @@ import firebase from "./firebase/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import LoginPage from "./components/login";
+// import M from "materialize-css";
+// import "./App.css";
 
 // import uuid from "react-uuid";
 import LoadingRender from "./components/loading/loading";
+import MessageBoard from "./components/messages";
+import ChatRoom from "./components/messages/chatroom";
+import AboutUs from "./components/about";
 
 class Pairome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDp: undefined,
       isMounted: true,
       isAuthenticated: firebase.auth().currentUser,
       isUploadingToFirebase: true,
       myFavourites: [],
       me: [],
+      friend: undefined,
+      msgCount: 0,
     };
   }
   componentDidMount() {
@@ -42,6 +48,34 @@ class Pairome extends React.Component {
               .collection("users")
               .doc(docs.data().uid)
               .onSnapshot((doc) => {
+                firebase
+                  .firestore()
+                  .collection("messages")
+                  .doc(doc.data().uid)
+                  .onSnapshot((doces) => {
+                    if (doces.exists) {
+                      this.state.isMounted && this.setState({ msgCount: 0 });
+                      Object.keys(doces.data()).forEach((dost) => {
+                        let uido = doces.data()[dost].pop().uid;
+                        firebase
+                          .firestore()
+                          .collection("messagetexts")
+                          .doc(uido)
+                          .onSnapshot((docso) => {
+                            if (docso.exists) {
+                              if (!docso.data().isSeen) {
+                                if (this.state.isMounted) {
+                                  let msgCount = this.state.msgCount;
+                                  msgCount++;
+                                  this.setState({ msgCount });
+                                }
+                              }
+                            }
+                          });
+                      });
+                    }
+                  });
+
                 if (this.state.isMounted) {
                   this.setState({ isAuthenticated: true });
                   this.setState({ currentDp: doc.data().imageurl });
@@ -73,6 +107,7 @@ class Pairome extends React.Component {
     ) : (
       <Router>
         <Navigation
+          msgCount={this.state.msgCount}
           isAuthenticated={this.state.isAuthenticated}
           me={this.state.me}
         />
@@ -80,13 +115,23 @@ class Pairome extends React.Component {
           <Switch>
             <Route exact path="/">
               <Home
+                msgCount={this.state.msgCount}
                 me={this.state.me}
                 isAuthenticated={this.state.isAuthenticated}
+                currentlyChattingWith={(friend) => {
+                  this.setState({ friend: friend });
+                }}
               />
             </Route>
             <Route exact path="/privateProfile">
               {this.state.isAuthenticated ? (
-                <PrivateProfile me={this.state.me} />
+                <PrivateProfile
+                  msgCount={this.state.msgCount}
+                  me={this.state.me}
+                  currentlyChattingWith={(friend) => {
+                    this.setState({ friend: friend });
+                  }}
+                />
               ) : (
                 <LoadingRender />
               )}
@@ -135,9 +180,37 @@ class Pairome extends React.Component {
               <ChooseDp sendTo={"/privateProfile"} me={this.state.me} />
             </Route>
 
+            <Route exact path="/privateProfile/messageBoard">
+              <MessageBoard
+                me={this.state.me}
+                currentlyChattingWith={(friend) => {
+                  this.setState({ friend: friend });
+                }}
+              />
+            </Route>
+
+            <Route exact path="/privateProfile/messageBoard/chatRoom">
+              <ChatRoom me={this.state.me} friend={this.state.friend} />
+            </Route>
             <Route exact path="/loginPage" component={LoginPage}></Route>
+            <Route exact path="/aboutus" component={AboutUs}></Route>
           </Switch>
         </div>{" "}
+        {
+          window.location.pathname.includes("messageBoard") ? "" : ""
+          // <div className="fixed-action-btn">
+          //   <Link
+          //     to="/privateProfile/messageBoard"
+          //     className={
+          //       this.state.msgCount === 0
+          //         ? "btn-floating btn-large black"
+          //         : "btn-floating btn-large  red"
+          //     }
+          //   >
+          //     <i className="large material-icons">chat </i>{" "}
+          //   </Link>
+          // </div>
+        }
       </Router>
     );
   }

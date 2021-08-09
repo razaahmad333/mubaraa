@@ -80,20 +80,22 @@ function Navigation(props) {
         </div>
         <div className="col l3">
           <Link to="/">
-            <span className="brand"> Mubaraa</span>
+            <span className="brand"> Mubaraah</span>
           </Link>
         </div>
 
         <div className="col l1"></div>
         <div className="col l7">
           <div className="row">
-            {isAuthenticated ? <div className="col l4"></div> : ""}
+            {isAuthenticated ? <div className="col l3"></div> : ""}
             <div className="col l3 ">
-              <div className="accountLinks">About Us</div>
+              <Link to="/aboutus">
+                <div className="accountLinks">About Us</div>
+              </Link>
             </div>
             <div className="col l1"></div>
             {isAuthenticated ? (
-              <div className="col l4">
+              <div className="col l2">
                 <Link to="/privateProfile">
                   <img
                     alt="tasveer"
@@ -105,7 +107,7 @@ function Navigation(props) {
                 </Link>
               </div>
             ) : (
-              <div className="col l8">
+              <div className="col l6">
                 <div className="row">
                   <div className="col l5 ">
                     {" "}
@@ -129,6 +131,15 @@ function Navigation(props) {
                 </div>{" "}
               </div>
             )}
+            <div className="col l1">
+              {isAuthenticated && (
+                <a className="sidenav-trigger" href="#slide-out">
+                  {" "}
+                  <i className="material-icons small menuIcon">menu</i>
+                </a>
+              )}
+            </div>
+            <div className="col l2"></div>
           </div>
         </div>
       </div>
@@ -146,37 +157,61 @@ function Navigation(props) {
           {/* </div>
           </div> */}
         </li>
+        {isAuthenticated && dp ? (
+          <li>
+            <Link to="/" className="wave-effect">
+              <div className="headingo">{props.me.username}</div>
+            </Link>
+          </li>
+        ) : (
+          ""
+        )}
+
         <li>
-          <a href="/" className="waves-effect">
+          <Link to="/" className="wave-effect">
             Home
-          </a>
+          </Link>
         </li>
         {isAuthenticated && dp ? (
           <li>
-            <a href="/privateProfile" className="waves-effect">
+            <Link to="/privateProfile" className="waves-effect">
               My Profile
-            </a>
+            </Link>
           </li>
         ) : (
           ""
         )}
         {isAuthenticated && dp ? (
           <li>
-            <a
-              href="/privateProfile/questionBoard/showmyanswers"
+            <Link to="/privateProfile/messageBoard" className="waves-effect">
+              Messages{" "}
+              {props.msgCount === 0 ? (
+                ""
+              ) : (
+                <span className="new badge red">{props.msgCount}</span>
+              )}
+            </Link>
+          </li>
+        ) : (
+          ""
+        )}
+        {isAuthenticated && dp ? (
+          <li>
+            <Link
+              to="/privateProfile/questionBoard/showmyanswers"
               className="waves-effect"
             >
               My Responses
-            </a>
+            </Link>
           </li>
         ) : (
           ""
         )}
         {isAuthenticated && dp ? (
           <li>
-            <a href="/privateProfile/createProfile" className="waves-effect">
+            <Link to="/privateProfile/createProfile" className="waves-effect">
               Edit My Profile
-            </a>
+            </Link>
           </li>
         ) : (
           ""
@@ -205,9 +240,9 @@ function Navigation(props) {
           <div className="divider"></div>
         </li>
         <li>
-          <a className="waves-effect" href="/">
+          <Link to="/aboutus" className="waves-effect">
             About Us
-          </a>
+          </Link>
         </li>
       </ul>
       {/* added this thing to main move it to added to login please  */}

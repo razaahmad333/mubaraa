@@ -44,7 +44,7 @@ import scientist from "./images/profession/scientist.jfif";
 import teacher from "./images/profession/teacher.png";
 
 import petlover from "./images/withoutOption/petlover.jfif";
-import relationship from "./images/withoutOption/relationship.jfif";
+import friendship from "./images/withoutOption/friend.jpg";
 import shyness from "./images/withoutOption/shyness.jfif";
 import stagophobia from "./images/withoutOption/stagophobia.jfif";
 import talkative from "./images/withoutOption/talkative.jfif";
@@ -280,8 +280,8 @@ let questions = [
     },
     {
       statement: [
-        "Had a relationship in early age ",
-        " Had a relationship in early age ",
+        "Had a lot of friends in early age ",
+        " बचपन में बहुत सारे दोस्त थे ",
       ],
 
       options: [
@@ -292,7 +292,7 @@ let questions = [
           name: ["No", "ना"],
         },
       ],
-      img: relationship,
+      img: friendship,
     },
     {
       statement: ["were talkative", "बातूनी थे "],

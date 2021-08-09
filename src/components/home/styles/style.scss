@@ -11,7 +11,7 @@ $backgroundColor1:rgba(2, 57, 62, 1);
 }
 #time{
     font-size: 2em;
-    margin-top: 160px;
+    // margin-top: 160px;
 }
 
 
@@ -37,16 +37,20 @@ $backgroundColor1:rgba(2, 57, 62, 1);
     }
 }
 
+.bgi{
+    display: block;
+    margin: 15px auto;
+}
+
 
 @media only screen and (max-width: 770px) {
  
     #welcome{
         font-size: 1.8em;
-        margin-top: 100px;
+        margin-top: 50px;
     }
  
 #time{
-    margin-top: 50px;
     font-size: 1.5em;
 }
    
@@ -55,11 +59,10 @@ $backgroundColor1:rgba(2, 57, 62, 1);
 @media only screen and (max-width: 480px) {
     #welcome{
         font-size: 2em;
-        margin-top: 100px;
+        margin-top: 50px;
     }
  
 #time{
-    margin-top: 50px;
     font-size: 1.5em;
 }
    

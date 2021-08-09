@@ -1,64 +1,64 @@
 @import '../../../styles/basicsStyles';
 
-.usernameo{
-    // margin-top: 1px;
-    display: flex;
-    padding-top: 0;
-    font-size: 1.3em;
-
-}
-.percentage{
-    font-size:1.3em;
-}
 .favUser{
     border-left: 3px solid rgba(180, 6, 6, 0.904);
-    .innerLayer{
-
-        .dp{
-            display: block;
-            // margin-left: 5px;
-        }
-    }
-}
-
-
-.addBtn{
-        
-    img{
-    display: block;
-        margin-top:10px;
-    width: 40px;
-    cursor: pointer;
-}
 }
 
 .innerLayer{
-    width: 90%;
-    margin: 10px auto;
-    font-size: 1.3em;
+    margin-bottom: 30px;
+    font-size: 2em;
     .dp{
         display: block;
-        margin-left: 10px;   
+        width: 50px;
+        height: 50px;
     }
 
     p{
-        margin-top:15px;
+        padding: 0;
+        margin: 0;
+        margin-top: 5px;       
+    }
+
+}
+.newMessage{
+    // position: relative;
+    // top: 50px;
+    white-space: nowrap;
+    font-size: 0.3em;
+}
+
+.newMessage{
+    font-size: 0.5em;
+    color:rgb(219, 7, 53);
+    &:hover{
+        color:rgb(221, 10, 48)
+
     }
 }
 
-@media only screen and (max-width:480px){
-    
-    .innerLayer{
-        .dp{
-            width: 50px;
-            height: 50px;       
-        }
-    }
-    .usernameo{
-        // margin-top: 1px;
-        display: flex;
-        padding-top: 0;
-        font-size: 1.2em;
-    
-    }
+.usernameo{
+    padding-left: 5px;
+    // background-color: yellow;
 }
+// @media only screen and (max-width:480px){
+
+    
+    
+// }
+
+// <div className="col s6">
+// <div className="row">
+//   <div className="col s12">
+//     <div className="row">
+//       <div className="col s5">
+//         <div className="usernameo">{user.username}</div>
+//       </div>
+//       <div className="col s2"></div>
+//       <div className="col s5">{user.relativeToMe + "%"}</div>
+//     </div>
+//   </div>
+//   <div className="col s12">
+//     <div className="newMessage">{"new message"}</div>
+//   </div>
+// </div>
+// </div>

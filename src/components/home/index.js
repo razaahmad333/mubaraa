@@ -10,7 +10,11 @@ class Home extends Component {
     return (
       <div>
         {this.props.isAuthenticated ? (
-          <HomeOnAuthentication me={this.props.me} />
+          <HomeOnAuthentication
+            me={this.props.me}
+            msgCount={this.props.msgCount}
+            currentlyChattingWith={this.props.currentlyChattingWith}
+          />
         ) : (
           <HomeWithoutAuthentication />
         )}
