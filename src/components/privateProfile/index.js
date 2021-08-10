@@ -63,6 +63,9 @@ class PrivateProfile extends Component {
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
   render() {
     return (
@@ -135,6 +138,9 @@ class PrivateProfile extends Component {
                 </Link>{" "}
                 <Link to={`/privateProfile/questionBoard`}>
                   <div className="privateBtn">Edit Your Choices</div>
+                </Link>{" "}
+                <Link to={`/privateProfile/createProfile/choosedp`}>
+                  <div className="privateBtn">Change your Dp</div>
                 </Link>
                 <Link to="/privateProfile/createProfile">
                   <div className="privateBtn">Edit Your Name</div>
@@ -164,6 +170,21 @@ class PrivateProfile extends Component {
             </div>
           </div>
         )}
+        <div className="containerD center">
+          <div
+            className="whatsappSharingBtn"
+            onClick={() => {
+              window.open(
+                `whatsapp://send?text=Try Out this app ${
+                  window.location.protocol + "//" + window.location.host
+                }`
+              );
+            }}
+          >
+            {" "}
+            Share with your friends
+          </div>
+        </div>
       </div>
     );
   }

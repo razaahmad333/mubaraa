@@ -50,6 +50,9 @@ class LoginPage extends Component {
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   loginPlease() {
@@ -67,8 +70,6 @@ class LoginPage extends Component {
     );
     if (idx !== -1) {
       if (this.state.allPasswords[idx] === this.state.pwd) {
-        console.log("loggin ", this.state.allUids[idx]);
-
         firebase
           .auth()
           .signInAnonymously()

@@ -14,6 +14,7 @@ export default function filterIt(username) {
     "harami",
     "bhenchod",
     "benchod",
+    "whore",
   ];
 
   for (let word of filt) {

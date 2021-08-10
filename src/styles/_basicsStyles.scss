@@ -91,10 +91,36 @@ div{
     }
 }
 
+$backgroundColorShare:rgb(50, 205, 50);
+
+.whatsappSharingBtn{
+    padding: 10px 5px;
+    width: 80%;
+    margin: 20px auto;
+   
+    border-top-left-radius: $borderRadiusTopLeft;
+    border-bottom-right-radius: $borderRadiusDownRight;
+
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid $backgroundColorShare;
+
+    background-color: $backgroundColorShare;
+    color: white;
+    transition: background-color 1s, border-radius 1s;
+    transition-timing-function: ease-in-out;
+    
+    &:hover {
+        background-color: white;
+        border-radius: $borderRadius;
+        color: $backgroundColorShare;
+    }}
 @media only screen and (max-width: 480px) {
 
     .containerD{
         width: 95%;
     }
+
+ 
  
 }

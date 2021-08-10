@@ -47,6 +47,11 @@ class Pairome extends React.Component {
               .firestore()
               .collection("users")
               .doc(docs.data().uid)
+              .update({ online: true });
+            firebase
+              .firestore()
+              .collection("users")
+              .doc(docs.data().uid)
               .onSnapshot((doc) => {
                 firebase
                   .firestore()
@@ -99,6 +104,16 @@ class Pairome extends React.Component {
   }
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    firebase.auth().currentUser &&
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.state.me.uid)
+        .update({ online: false });
+    console.log("unmonted");
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   render() {

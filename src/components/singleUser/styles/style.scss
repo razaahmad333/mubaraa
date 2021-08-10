@@ -6,7 +6,7 @@
 
 .innerLayer{
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
     .dp{
         display: block;
         width: 50px;
@@ -37,28 +37,11 @@
 }
 
 .usernameo{
+    // background-color: red;
+    margin-top: 15px;
     padding-left: 5px;
     // background-color: yellow;
 }
 // @media only screen and (max-width:480px){
 
     
-    
-// }
-
-// <div className="col s6">
-// <div className="row">
-//   <div className="col s12">
-//     <div className="row">
-//       <div className="col s5">
-//         <div className="usernameo">{user.username}</div>
-//       </div>
-//       <div className="col s2"></div>
-//       <div className="col s5">{user.relativeToMe + "%"}</div>
-//     </div>
-//   </div>
-//   <div className="col s12">
-//     <div className="newMessage">{"new message"}</div>
-//   </div>
-// </div>
-// </div>

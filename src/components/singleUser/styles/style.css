@@ -81,6 +81,29 @@ div {
   }
 }
 
+.whatsappSharingBtn {
+  padding: 10px 5px;
+  width: 80%;
+  margin: 20px auto;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid limegreen;
+  background-color: limegreen;
+  color: white;
+  -webkit-transition: background-color 1s, border-radius 1s;
+  transition: background-color 1s, border-radius 1s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.whatsappSharingBtn:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: limegreen;
+}
+
 @media only screen and (max-width: 480px) {
   .containerD {
     width: 95%;
@@ -93,7 +116,7 @@ div {
 
 .innerLayer {
   margin-bottom: 30px;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .innerLayer .dp {
@@ -123,6 +146,7 @@ div {
 }
 
 .usernameo {
+  margin-top: 15px;
   padding-left: 5px;
 }
 /*# sourceMappingURL=style.css.map */

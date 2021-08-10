@@ -82,6 +82,9 @@ class SingleUser extends Component {
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   addToMyFav(uid) {

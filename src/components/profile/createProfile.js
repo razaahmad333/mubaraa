@@ -6,6 +6,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import LoadingRender from "../loading/loading";
 import abusiveFilter from "./abusiveFilter";
+import M from "materialize-css";
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +15,12 @@ class CreateProfile extends Component {
       next: false,
       message: "",
       username: this.props.me.username,
+      instructionShow: true,
       pwd: this.props.me.pwd,
       isUploadingToFirebase: true,
       isMounted: true,
       allUsernames: [],
+      instaces: undefined,
     };
 
     this.submitTheProfile = this.submitTheProfile.bind(this);
@@ -26,18 +29,23 @@ class CreateProfile extends Component {
   componentDidMount() {
     document.querySelector("#username") &&
       document.querySelector("#username").focus();
+    // const modal = document.querySelector(".modal");
+    // modal && M.Modal.init(modal, {});
 
+    // this.setState({instaces});
     firebase
       .firestore()
       .collection("users")
       .get()
       .then((doc) => {
-        console.log(doc.docs);
-
         const allUsernames = doc.docs.map((doco) =>
           doco.data().username.toLowerCase()
         );
-
+        if (this.state.isMounted) {
+          const modal = document.querySelector("#takess");
+          const instaces = M.Modal.init(modal, {});
+          this.setState({ instaces });
+        }
         this.state.isMounted &&
           this.setState({ allUsernames }, () => {
             this.state.isMounted &&
@@ -62,7 +70,10 @@ class CreateProfile extends Component {
 
       return;
     }
-    if (allUsernames.includes(username.toLowerCase())) {
+    if (
+      allUsernames.includes(username.toLowerCase()) &&
+      username.toLowerCase() !== this.props.me.username.toLowerCase()
+    ) {
       this.setState({ message: "username not available" });
 
       return;
@@ -119,9 +130,15 @@ class CreateProfile extends Component {
   }
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   render() {
+    // const modal = document.querySelector(".modal");
+    // const instaces = M.Modal.init(modal, {});
+    // this.setState({instaces});
     return (
       <div>
         {" "}
@@ -183,20 +200,31 @@ class CreateProfile extends Component {
                   <div className="messageLogin">{this.state.message}</div>
                 )}
                 <div
-                  className="submitButton center"
+                  data-target="takess"
+                  // className={
+                  //   this.state.instructionShow
+                  //     ? "submitButton center modal-trigger"
+                  //     : "submitButton center "
+                  // }
+                  className={"submitButton center modal-trigger"}
                   onClick={() => {
-                    this.submitTheProfile(true);
-                    this.setState({ next: !true });
+                    if (!this.state.instructionShow) {
+                      this.submitTheProfile(true);
+                      this.setState({ next: !true });
+                    }
                   }}
                 >
                   {this.props.sendTo ? "Change Dp" : "Choose Dp"}
                 </div>
                 {this.props.sendTo && (
                   <div
-                    className="submitButton center"
+                    data-target="takess"
+                    className={"submitButton center modal-trigger"}
                     onClick={() => {
-                      this.submitTheProfile(false);
-                      this.setState({ next: !true });
+                      if (!this.state.instructionShow) {
+                        this.submitTheProfile(false);
+                        this.setState({ next: !true });
+                      }
                     }}
                   >
                     Save{" "}
@@ -208,6 +236,31 @@ class CreateProfile extends Component {
             )}
           </div>
         )}
+        <div className="modal" id="takess">
+          <p className="center text-black">
+            Take a screenShot of password so that you dont forget it{" "}
+          </p>
+          <p className="center text-black">
+            in case you signed out accidently then you will no longer be able to
+            recover your account{" "}
+          </p>
+          <p className="center">
+            <i>Just for the shake of caution</i>
+          </p>
+          <p className="center">Not mandatory</p>
+
+          <div className="btnContains">
+            <div
+              className="privateBtn modal-close"
+              onClick={() => {
+                this.state.instaces.destroy();
+                this.setState({ instructionShow: false });
+              }}
+            >
+              Okay{" "}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

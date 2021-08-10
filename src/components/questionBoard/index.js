@@ -10,6 +10,7 @@ import firebase from "../../firebase/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import LoadingRender from "../loading/loading";
+import uuid from "react-uuid";
 
 class QuestionBoard extends Component {
   static propTypes = {
@@ -48,6 +49,9 @@ class QuestionBoard extends Component {
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   updateQuestion(upd) {
@@ -101,9 +105,12 @@ class QuestionBoard extends Component {
     if (this.state.showAnswerClicked) return;
     const user = firebase.auth().currentUser;
     let { userAnswers } = this.state;
-    this.state.isMounted && this.setState({ isUploadingToFirebase: true });
+
+    if (true) {
+      this.setState({ isUploadingToFirebase: true });
+    }
     if (user) {
-      this.state.isMounted && this.setState({ isUploadingToFirebase: true });
+      // true && this.setState({ isUploadingToFirebase: true });
 
       firebase
         .firestore()
@@ -117,8 +124,9 @@ class QuestionBoard extends Component {
             .doc(docs.data().uid)
             .update({ userAnswers })
             .then((d) => {
-              this.state.isMounted &&
+              if (true) {
                 this.setState({ showAnswerClicked: false });
+              }
               window.location.assign(window.location + "/showmyanswers");
             })
             .catch((err) => {
@@ -141,7 +149,7 @@ class QuestionBoard extends Component {
             .doc(user.user.uid)
             .set({
               uid: user.user.uid,
-              username: "guest",
+              username: "guest" + uuid().slice(0, 3),
               pwd: String(Math.floor(Math.random(0.1, 1) * 10000)),
               userAnswers,
               creation: false,
@@ -153,10 +161,11 @@ class QuestionBoard extends Component {
               chatsWith: [],
             })
             .then((d) => {
-              this.state.isMounted &&
+              if (true) {
                 this.setState({ showAnswerClicked: false });
-              this.state.isMounted &&
                 this.setState({ isUploadingToFirebase: false });
+              }
+
               window.location.assign(window.location + "/showmyanswers");
             })
             .catch((err) => {

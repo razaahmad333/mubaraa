@@ -44,23 +44,19 @@ class MessageText extends Component {
       .firestore()
       .collection("messagetexts")
       .doc(msg.uid)
-      .update({ isDeleted: tggle })
-      .then((d) => {
-        console.log("sucesful", d);
-      });
-
+      .update({ isDeleted: tggle });
     firebase
       .firestore()
       .collection("messagetexts")
       .doc(msg.affair)
-      .update({ isDeleted: tggle })
-      .then((d) => {
-        console.log("sucesful", d);
-      });
+      .update({ isDeleted: tggle });
   }
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   giveTextClass(isDeleted, status) {

@@ -20,7 +20,7 @@ class AboutUs extends Component {
         </p>
         <hr></hr>
         <h5 className="headingo">
-          How To Use And Query Regarding to creating Profile{" "}
+          How To Use And Query Regarding creating Profile{" "}
         </h5>
         <img src={profile} alt="test profile" />
         <p>you can send messages to anyone by clicking on its dp </p>
@@ -37,6 +37,7 @@ class AboutUs extends Component {
         <img src={me} alt="me" className="circle" width="100px" />
         <p className="headingo">AHMAD RAZA</p>
         <p>Web developer</p>
+        <p>Freelancer</p>
         <p>INDIAN</p>
         <div className="row">
           <div className="col s2">
@@ -82,12 +83,28 @@ class AboutUs extends Component {
           authentication and database
         </p>
 
-        <p>Materialize css, a little bit for position element </p>
+        <p>Materialize css, a little bit for positioning of element </p>
         <p>
           VSCODE by <b>Microsoft</b>, awesome code editor
         </p>
         <hr></hr>
+
         <p className="center ">Created by AHMAD RAZA. © 2021</p>
+        <div className="containerD center">
+          <div
+            className="whatsappSharingBtn"
+            onClick={() => {
+              window.open(
+                `whatsapp://send?text=Try Out this app ${
+                  window.location.protocol + "//" + window.location.host
+                }`
+              );
+            }}
+          >
+            {" "}
+            Share with your friends
+          </div>
+        </div>
       </div>
     );
   }

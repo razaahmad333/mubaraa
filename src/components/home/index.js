@@ -18,6 +18,22 @@ class Home extends Component {
         ) : (
           <HomeWithoutAuthentication />
         )}
+        {/* <button onclick="window.open('https://web.whatsapp.com://send?text=This is whatsapp sharing example using button')"> Open WhatsApp </button>   */}
+        <div className="containerD center">
+          <div
+            className="whatsappSharingBtn"
+            onClick={() => {
+              window.open(
+                `whatsapp://send?text=Try Out this app ${
+                  window.location.protocol + "//" + window.location.host
+                }`
+              );
+            }}
+          >
+            {" "}
+            Share with your friends
+          </div>
+        </div>
       </div>
     );
   }

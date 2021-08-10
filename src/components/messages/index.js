@@ -21,17 +21,17 @@ class MessageBoard extends Component {
       .then((doc) => {
         if (this.state.isMounted) {
           if (doc.exists) {
-            console.log(doc.exists);
-            console.log(Object.keys(doc.data()));
             this.setState({ chatsWith: Object.keys(doc.data()) });
           } else {
-            console.log(doc.exists);
           }
         }
       });
   }
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
   render() {
     return (

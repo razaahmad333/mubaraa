@@ -81,10 +81,13 @@ class HomeOnAuthentication extends Component {
 
     users = quickSortIt(users);
 
-    this.state.isMounted &&
+    if (this.state.isMounted) {
       this.setState({ users }, () => {
-        this.setState({ isUploadingToFirebase: false });
+        if (this.state.isMounted) {
+          this.setState({ isUploadingToFirebase: false });
+        }
       });
+    }
   }
 
   componentDidMount() {
@@ -105,7 +108,6 @@ class HomeOnAuthentication extends Component {
               .doc(uido)
               .onSnapshot((docs) => {
                 if (docs.exists) {
-                  console.log(docs.data());
                   if (!docs.data().isSeen) {
                     if (this.state.isMounted) {
                       let msgCount = this.state.msgCount;
@@ -139,6 +141,9 @@ class HomeOnAuthentication extends Component {
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   render() {
